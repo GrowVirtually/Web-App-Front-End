@@ -24,9 +24,10 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: theme.spacing(4),
   },
   userCard:{
-    backgroundColor: '#7986cb',
+    // backgroundColor: '#7986cb',
     borderRadius:'10px',
     textAlign:'center',
+    padding: '12px',
   },
 }));
 
@@ -49,9 +50,12 @@ export default function Profile() {
               />
             </Grid>
           </Grid>
-          <Grid>
+          <Grid container spacing={3}>
             <Grid item xs={12} sm={6} className={classes.userCard}>
               <ProfileCard/>
+            </Grid>
+            <Grid item xs={12} sm={6} className={classes.userCard}>
+            <img src={process.env.PUBLIC_URL + '../assets/transG.png'} style={{width:'50%'}}/> 
             </Grid>
           </Grid>
         </Container>

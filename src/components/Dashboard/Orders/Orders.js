@@ -9,6 +9,10 @@ import Summery from './Summery';
 import OrderTable from './OrderTable';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import PageHeader from '../../PageHeader';
+import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
+import StoreIcon from '@material-ui/icons/Store';
+import PaymentIcon from '@material-ui/icons/Payment';
+import EmojiPeopleIcon from '@material-ui/icons/EmojiPeople';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -50,15 +54,43 @@ export default function Orders() {
                 icon={<ShoppingCartIcon fontSize="large" />}
               />
             </Grid>
-            <Grid item xs={12} sm={9}>
-            <Paper className={classes.paper}>
-                <OrderTable/>
-            </Paper>
-            </Grid>
-          <Grid item xs={12} sm={3}>
-            <Summery/>
+            <Grid item xs={12} sm={12}>
+                <Paper className={classes.paper}>
+                    <OrderTable/>
+                </Paper>
+              </Grid>          
           </Grid>
-        </Grid>
+            <Grid container spacing={3}>
+              <Grid item xs={6} sm={3}>
+                {/* <Summery/> */}
+                <PageHeader
+                    title="Total Orders"
+                    subTitle="25"
+                    icon={<ShoppingBasketIcon fontSize="medium" />}
+                  />
+              </Grid>
+              <Grid item xs={6} sm={3}>
+                <PageHeader
+                    title="Total Delivers"
+                    subTitle="25"
+                    icon={<StoreIcon  fontSize="medium" />}
+                  />
+              </Grid>
+              <Grid item xs={6} sm={3}>
+                <PageHeader
+                    title="Total Sellers"
+                    subTitle="25"
+                    icon={<PaymentIcon fontSize="medium" />}
+                  />
+              </Grid>
+              <Grid item xs={6} sm={3}>
+                <PageHeader
+                    title="Total Buyers"
+                    subTitle="25"
+                    icon={<EmojiPeopleIcon fontSize="medium" />}
+                  />
+              </Grid>
+          </Grid>
         </Container>
       </main>
     </div>
