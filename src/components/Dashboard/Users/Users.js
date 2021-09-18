@@ -7,6 +7,7 @@ import PageHeader from '../../PageHeader';
 import Container from '@material-ui/core/Container';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
+import ProfileCard from './ProfileCard';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,6 +22,11 @@ const useStyles = makeStyles((theme) => ({
   container: {
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
+  },
+  userCard:{
+    backgroundColor: '#7986cb',
+    borderRadius:'10px',
+    textAlign:'center',
   },
 }));
 
@@ -42,7 +48,12 @@ export default function Profile() {
                 icon={<PeopleIcon  fontSize="large" />}
               />
             </Grid>
-        </Grid>
+          </Grid>
+          <Grid>
+            <Grid item xs={12} sm={6} className={classes.userCard}>
+              <ProfileCard/>
+            </Grid>
+          </Grid>
         </Container>
       </main>
     </div>
