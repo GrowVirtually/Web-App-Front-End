@@ -53,6 +53,7 @@ const useStyles = makeStyles((theme) => ({
         fontWeight:'400',
         margin:'2%',
         padding:'5%',
+        linkStyle:'none',
     },
     media: {
         height: 540,
@@ -157,7 +158,7 @@ Find anything withinn 10 seconds.</h6>
               <p>Surplus produce happens because of lack of selling opportunities, loss in demand or result of overproduction. There can be a lot of surplus product available 
                   in Sri Lanka without any consumer. Without a buyer, farmers are forced to leave their produce to rot on the farm or on the excess marketplace. Food consumption forecasting is also difficult because supply and demand each other. So we are making a platform for continous demand to supply.</p>
                   <div className={classes.downBtn}>
-                <Button variant="outlined" href="https://play.google.com/store/apps" component={Link}>Download</Button>
+                <Button variant="outlined" href="https://play.google.com/store/apps" component={Link} style={{ textDecoration: 'none' }}>Download</Button>
                 </div>
           </div>
         </Grid>

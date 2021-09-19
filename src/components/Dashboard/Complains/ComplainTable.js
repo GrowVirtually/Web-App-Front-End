@@ -31,15 +31,15 @@ const useStyles = makeStyles(
 );
 
 const columns = [
-  { field: 'expense', headerName: 'Order ID', width: 160, editable: false},
+  { field: 'expense', headerName: 'Order ID', width: 160, editable: true},
   {
     field: 'price',
     headerName: 'Price',
     type: 'number',
     width: 120,
-    editable: false,
+    editable: true,
   },
-  { field: 'dueAt', headerName: 'Date', type: 'date', width: 160, editable: false },
+  { field: 'dueAt', headerName: 'Date', type: 'date', width: 160, editable: true },
   {
     field: 'isPaid',
     headerName: 'Is Checked?',
@@ -52,7 +52,7 @@ const columns = [
     headerName: 'Paid at',
     type: 'date',
     width: 160,
-    editable: false,
+    editable: true,
   },
 ];
 
