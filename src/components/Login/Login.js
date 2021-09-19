@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -13,6 +13,9 @@ import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import { CallToActionSharp } from '@material-ui/icons';
+import axios from 'axios';
+
 
 function Copyright() {
   return (
@@ -26,6 +29,8 @@ function Copyright() {
     </Typography>
   );
 }
+
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -65,6 +70,23 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Login() {
   const classes = useStyles();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try{
+      const logindetails = await axios.post(`https://grovi-backend.herokuapp.com/api/v1/admins/login`,{
+        email,
+        password,
+      });
+      // console.log(process.env.HOST_PORT);
+      console.log(logindetails);
+    }
+    catch(error){
+      console.error(error);
+    }
+  }
 
   return (
     <Grid container component="main" className={classes.root} id="loginto">
@@ -87,6 +109,9 @@ export default function Login() {
               name="email"
               autoComplete="email"
               autoFocus
+              onChange={(e)=>{
+                setEmail(e.target.value)
+              }}              
             />
             <TextField
               color="#009900"
@@ -99,13 +124,17 @@ export default function Login() {
               type="password"
               id="password"
               autoComplete="current-password"
+              onChange={(e)=>{
+                setPassword(e.target.value)
+              }} 
             />
             <FormControlLabel
               control={<Checkbox value="remember" style={{color:'#009900'}} />}
               label="Remember me"
             />
-            <Paths to="/dashboard">
+            
             <Button
+              onClick={handleLogin}
               type="submit"
               fullWidth
               variant="contained"
@@ -114,7 +143,7 @@ export default function Login() {
             >
               Sign In
             </Button>
-            </Paths>
+            
             <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2">
