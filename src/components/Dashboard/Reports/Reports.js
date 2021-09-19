@@ -12,6 +12,26 @@ import Grid from '@material-ui/core/Grid';
 import ActiveExpireChart from './ActiveExpireChart';
 import MostSellChart from './MostSellCategory';
 import MostSellType from './MostSellType';
+import ReactDOM from "react-dom";
+import Pdf from "react-to-pdf";
+import Button from '@material-ui/core/Button';
+
+function TodayDate(){
+  return(      
+      new Date().toLocaleDateString()     
+  );
+}
+
+const name =TodayDate();
+
+const ref = React.createRef();
+const rootElement = document.getElementById("root");
+ReactDOM.render(<ActiveExpireChart />, rootElement);
+const options = {
+    orientation: 'portrait',
+    unit: 'in',
+    format: [14,12]
+};
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
     display: 'flex',
     overflow: 'auto',
-    flexDirection: 'column',
+    flexDirection: 'column',    
     // '&:hover': {
     //     background: "#cfd8dc",
     //     transition: "background 1s, color 1s",
@@ -44,7 +64,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Reports() {
   const classes = useStyles();
-  console.log("blaa")
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
   return (
     <div className={classes.root}>
@@ -52,7 +71,7 @@ export default function Reports() {
       <Header />
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
-        <Container maxWidth="lg" className={classes.container}>
+        <Container maxWidth="lg" className={classes.container} ref={ref}>
           <Grid container spacing={3}>
             <Grid item xs={12} sm={6}>            
               <PageHeader
@@ -93,6 +112,12 @@ export default function Reports() {
               </Paper>        
             </Grid>
           </Grid>
+          <Pdf  targetRef={ref} filename={name} options={options} x={.5} y={.5} scale={0.8}>
+        {({toPdf}) => (
+            <Button variant="contained" onClick={toPdf} style={{backgroundColor:'#263238',color:'#E8E8E8'}}>Generate Report</Button>
+        )}
+          </Pdf >
+          
         </Container>
       </main>
     </div>
