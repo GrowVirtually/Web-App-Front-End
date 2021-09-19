@@ -72,12 +72,14 @@ export const mainListItems = (
 
 export const secondaryListItems = (
   <div>
+    <Link href="/" style={{color:'#E8E8E8', textDecoration:'none'}}>
     <ListItem button>
       <ListItemIcon>
         <PowerSettingsNewRoundedIcon style={{fill:'#E8E8E8'}}/>
       </ListItemIcon>
       <ListItemText primary="Logout" />
     </ListItem>
+    </Link>
     {/* <ListSubheader inset>Saved reports</ListSubheader>
     <ListItem button>
       <ListItemIcon>

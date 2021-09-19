@@ -35,7 +35,7 @@ export default function Deposits() {
   return (
     <React.Fragment>
       
-      <div className={classes.fontStyle}>Order Revenue</div>
+      <div className={classes.fontStyle}>Order Income</div>
       <Typography component="p" variant="h4">
         Rs.3,024.00
       </Typography>
