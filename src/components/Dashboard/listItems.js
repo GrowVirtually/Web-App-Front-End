@@ -10,7 +10,6 @@ import BarChartIcon from '@material-ui/icons/BarChart';
 import WarningIcon from '@material-ui/icons/Warning';
 import PersonAddRoundedIcon from '@material-ui/icons/PersonAddRounded';
 import PowerSettingsNewRoundedIcon from '@material-ui/icons/PowerSettingsNewRounded';
-import { makeStyles } from '@material-ui/core';
 
 export const mainListItems = (
   <div>
@@ -73,7 +72,7 @@ export const mainListItems = (
 export const secondaryListItems = (
   <div>
     <Link href="/" style={{color:'#E8E8E8', textDecoration:'none'}}>
-    <ListItem button>
+    <ListItem button value="Logout">
       <ListItemIcon>
         <PowerSettingsNewRoundedIcon style={{fill:'#E8E8E8'}}/>
       </ListItemIcon>

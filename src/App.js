@@ -2,8 +2,7 @@ import React from 'react'
 import Home from './components/Home/Home';
 import Login from './components/Login/Login';
 import Dashboard from './components/Dashboard/Dashboard';
-import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
-import RegisterForm from './components/Dashboard/Admins/RegisterForm';
+import {BrowserRouter as Router, Route} from "react-router-dom";
 import Complains from './components/Dashboard/Complains/Complains';
 import Orders from './components/Dashboard/Orders/Orders';
 import AddAdmin from './components/Dashboard/Admins/AddAdmin';

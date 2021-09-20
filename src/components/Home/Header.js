@@ -7,10 +7,8 @@ import { Link as Scroll } from 'react-scroll';
 import {Link} from "react-router-dom";
 import {fadeInDown} from 'react-animations';
 import styled , {keyframes} from 'styled-components';
-import Middle from './Middle';
 import Fab from '@material-ui/core/Fab';
 import UpIcon from '@material-ui/icons/KeyboardArrowUp';
-import Login from '../Login/Login';
 
 const Bounce = styled.div`animation: 2s  ${keyframes`${fadeInDown}`} infinite`;
 

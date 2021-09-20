@@ -122,7 +122,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function HeaderDB() {
+export default function HeaderDB(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const handleDrawerOpen = () => {
@@ -132,6 +132,7 @@ export default function HeaderDB() {
     setOpen(false);
   };
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
+  const {name} = props;
 
   return (
     <div className={classes.root}>
@@ -147,9 +148,10 @@ export default function HeaderDB() {
           >
             <MenuIcon />
           </IconButton>
-          <h2 noWrap className={classes.title}>
-            Welcome Manul
-          </h2>
+          <h1 noWrap className={classes.title}>
+            Welcome {name}
+          </h1>
+          
           <IconButton color="inherit">
             <Badge badgeContent={4} color="secondary">
               <NotificationsIcon />

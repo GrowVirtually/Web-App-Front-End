@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -6,7 +6,6 @@ import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
-import {Link as Paths} from "react-router-dom";
 import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
@@ -15,7 +14,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { CallToActionSharp } from '@material-ui/icons';
 import axios from 'axios';
-
+import SnackBarAlert from '../SnackBarAlert';
 
 function Copyright() {
   return (
@@ -29,8 +28,6 @@ function Copyright() {
     </Typography>
   );
 }
-
-
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -72,17 +69,22 @@ export default function Login() {
   const classes = useStyles();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
+ 
   const handleLogin = async (e) => {
     e.preventDefault();
     try{
       const logindetails = await axios.post(`https://grovi-backend.herokuapp.com/api/v1/admins/login`,{
         email,
-        password,
+        password,        
       });
       // console.log(process.env.HOST_PORT);
-      console.log(logindetails);
+      console.log(logindetails);         
+      const name = console.log(logindetails.data.user.fname);
+      if(logindetails.data.status === "success"){
+        window.location = "/dashboard";       
+      }
     }
+
     catch(error){
       console.error(error);
     }

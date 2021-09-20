@@ -2,7 +2,6 @@ import React from 'react'
 import Header from './Header';
 import Middle from './Middle';
 import { makeStyles } from '@material-ui/core';
-import { mergeClasses } from '@material-ui/styles';
 import { CssBaseline } from '@material-ui/core';
 import Team from './Team';
 import Footer from '../Footer';

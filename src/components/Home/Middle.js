@@ -10,7 +10,6 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 
 const useStyles = makeStyles((theme) => ({
@@ -84,8 +83,8 @@ const useStyles = makeStyles((theme) => ({
         </div>
       <div className={classes.root}>
         <Box component="span" m={1}>
-        <Grid container spacing={3}>
-          <Grid item xs={6}>
+        <Grid container spacing={3} xs={false}>
+          <Grid item xs={false} sm={6}>
           <Card className={classes.root}>
       <CardActionArea>
         <CardMedia
@@ -112,7 +111,7 @@ selling what you have in your home garden</h6>
       </CardActions>
     </Card>
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={false} sm={6}>
           <Card className={classes.root}>
       <CardActionArea>
         <CardMedia
