@@ -4,8 +4,7 @@ import { PieChart, Pie, Sector, ResponsiveContainer } from 'recharts';
 const data = [
   { name: 'Organic', value: 400 },
   { name: 'Inorganic', value: 300 },
-  { name: 'Group C', value: 300 },
-  { name: 'Group D', value: 200 },
+  { name: 'Other', value: 300 },
 ];
 
 const renderActiveShape = (props) => {

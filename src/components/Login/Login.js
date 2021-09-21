@@ -15,6 +15,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { CallToActionSharp } from '@material-ui/icons';
 import axios from 'axios';
 import SnackBarAlert from '../SnackBarAlert';
+import HeaderDB from '../Dashboard/Header';
 
 function Copyright() {
   return (
@@ -76,17 +77,27 @@ export default function Login() {
       const logindetails = await axios.post(`https://grovi-backend.herokuapp.com/api/v1/admins/login`,{
         email,
         password,        
-      });
-      // console.log(process.env.HOST_PORT);
+      })
+      // .then((response) => {
+      //   console.log(response.status);
+      // }, (error) => {
+      //   console.log(error);
+      // })
+      console.log(process.env.HOST_PORT);
       console.log(logindetails);         
-      const name = console.log(logindetails.data.user.fname);
+      
       if(logindetails.data.status === "success"){
-        window.location = "/dashboard";       
+        console.log(logindetails.data.user.fname);
+        localStorage.setItem('token',logindetails.data.token);
+        localStorage.setItem('Adminname',logindetails.data.fname);
+        window.location = "/dashboard";     
       }
-    }
+    } 
 
     catch(error){
       console.error(error);
+      console.log('failed'); 
+      alert("Only Admins Allow To Use");       
     }
   }
 
@@ -130,10 +141,10 @@ export default function Login() {
                 setPassword(e.target.value)
               }} 
             />
-            <FormControlLabel
+            {/* <FormControlLabel
               control={<Checkbox value="remember" style={{color:'#009900'}} />}
               label="Remember me"
-            />
+            /> */}
             
             <Button
               onClick={handleLogin}
@@ -147,11 +158,11 @@ export default function Login() {
             </Button>
             
             <Grid container>
-              <Grid item xs>
+              {/* <Grid item xs>
                 <Link href="#" variant="body2">
                   Forgot password?
                 </Link>
-              </Grid>
+              </Grid> */}
               <Grid item>
 
               </Grid>

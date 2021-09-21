@@ -15,6 +15,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import { mainListItems, secondaryListItems } from './listItems';
+import axios from 'axios';
 
 function Copyright() {
   return (
@@ -134,6 +135,15 @@ export default function HeaderDB(props) {
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
   const {name} = props;
 
+  const getData = () => {
+    
+    axios.get('https://grovi-backend.herokuapp.com/api/v1/admins/login')
+    .then((response) =>{
+      console.log(response);
+    });
+ 
+  }
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -144,6 +154,7 @@ export default function HeaderDB(props) {
             color="inherit"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
+            onClick={getData}
             className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
           >
             <MenuIcon />

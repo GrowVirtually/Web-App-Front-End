@@ -4,51 +4,50 @@ import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Resp
 const data = [
   {
     name: 'Monday',
-    uv: 4000,
-    pv: 2400,
+    active: 4000,
+    expire: 2400,
     amt: 2400,
   },
   {
     name: 'Tuesday',
-    uv: 3000,
-    pv: 1398,
+    active: 3000,
+    expire: 1398,
     amt: 2210,
   },
   {
     name: 'Wednesday',
-    uv: 2000,
-    pv: 9800,
+    active: 2000,
+    expire: 9800,
     amt: 2290,
   },
   {
     name: 'Thursday',
-    uv: 2780,
-    pv: 3908,
+    active: 2780,
+    expire: 3908,
     amt: 2000,
   },
   {
     name: 'Friday',
-    uv: 1890,
-    pv: 4800,
+    active: 1890,
+    expire: 4800,
     amt: 2181,
   },
   {
     name: 'Satureday',
-    uv: 2390,
-    pv: 3800,
+    active: 2390,
+    expire: 3800,
     amt: 2500,
   },
   {
     name: 'Sunday',
-    uv: 3490,
-    pv: 4300,
+    active: 3490,
+    expire: 4300,
     amt: 2100,
   },
 ];
 
 export default class ActiveExpireChart extends PureComponent {
-  static demoUrl = 'https://codesandbox.io/s/simple-bar-chart-tpz8r';
-
+  
   render() {
     return (
       <ResponsiveContainer width="100%" height="100%">
@@ -68,8 +67,8 @@ export default class ActiveExpireChart extends PureComponent {
           <YAxis />
           <Tooltip />
           <Legend />
-          <Bar dataKey="pv" fill="#ef5350" />
-          <Bar dataKey="uv" fill="#82ca9d" />
+          <Bar dataKey="expire" fill="#ef5350" />
+          <Bar dataKey="active" fill="#82ca9d" />
         </BarChart>
       </ResponsiveContainer>
     );
