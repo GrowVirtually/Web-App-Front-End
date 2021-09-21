@@ -5,37 +5,37 @@ import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Resp
 const data = [
   {
     name: 'Sunday',
-    Ads: 4000,    
+    Ads: 40,    
     
   },
   {
     name: 'Monday',
-    Ads: 3000,   
+    Ads: 30,   
     
   },
   {
     name: 'Tuesday',
-    Ads: 2000,    
+    Ads: 20,    
     
   },
   {
     name: 'Wednesday',
-    Ads: 2780,    
+    Ads: 27,    
    
   },
   {
     name: 'Thursday',
-    Ads: 1890,    
+    Ads: 18,    
     
   },
   {
     name: 'Friday',
-    Ads: 2390,    
+    Ads: 23,    
     
   },
   {
     name: 'Satureday',
-    Ads: 3490,
+    Ads: 3,
     
   },
 ];

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {useEffect,useState} from 'react';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
@@ -7,6 +7,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/DeleteOutlined';
 import SaveIcon from '@material-ui/icons/Save';
 import CancelIcon from '@material-ui/icons/Close';
+import axios from 'axios';
 import {
   useGridApiRef,
   DataGrid,
@@ -228,6 +229,34 @@ EditToolbar.propTypes = {
 export default function ViewTable() {
   const apiRef = useGridApiRef();
 
+  const [admin, setAdmin] = useState(null);
+
+  useEffect(() => {
+    
+
+    axios
+      .get('https://grovi-backend.herokuapp.com/api/v1/admins/login',)
+
+      .then(response => {
+        if (response.data.error) {
+          alert(response.data.error);
+        } else {
+          setAdmin(response.data);
+        }
+      })
+      .catch(error => {
+        alert(error);
+      });
+  }, []);
+
+  // const AdminList =
+  // admin &&
+  // admin.map((admin, i) => (
+  //   <>
+
+  //   </>
+  // ));
+
   const handleRowEditStart = (params, event) => {
     event.defaultMuiPrevented = true;
   };
@@ -239,7 +268,8 @@ export default function ViewTable() {
   return (
     <div style={{ height: 500, width: '100%' }}>
       <DataGrid
-        rows={rows}
+        // rows={rows}
+        rows={admin}
         columns={columns}
         apiRef={apiRef}
         editMode="row"

@@ -13,6 +13,7 @@ import FloatCard from "../../FloatCard";
 import PhoneRoundedIcon from "@material-ui/icons/PhoneRounded";
 import MailRoundedIcon from "@material-ui/icons/MailRounded";
 import SnackBarAlert from "../../SnackBarAlert";
+import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
   mainGrid: {
@@ -91,8 +92,40 @@ const useStyles = makeStyles((theme) => ({
 
 function Register() {
   const classes = useStyles();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [phone, setPhone] = useState('');
+  const [nic, setNic] = useState('');
+  const [name, setName] = useState('');
+
   const [alertShow, setAlertShow] = useState(false);
   const [alertData, setAlertData] = useState({ severity: "", msg: "" });
+
+  const RegisterAdmin = () =>{
+    const SubmitData = {
+      email:email,
+      password:password,
+      phone:phone,
+      nic:nic,
+      name:name, 
+    };
+    console.log(SubmitData);
+    alert(SubmitData);
+    axios.post(`https://grovi-backend.herokuapp.com/api/v1/admins/addNew`,
+    formData
+    )
+    .then(response => {
+      if (response.data.error) {
+        alert(response.data.error);
+      } else {
+        console.log(response.data);
+      }
+    })
+    .catch(error => {
+      alert(error);
+    });
+  };
+
   const displayAlert = () => {
     return (
       <SnackBarAlert
@@ -200,7 +233,7 @@ function Register() {
               >
                 Admin Can Access To The Grovi Dashboard
               </Typography>
-              <form onSubmit={sendMessage}>
+              <form  >
                 <Grid item container alignItems="center" spacing={3}>
                   <Grid item xs={12} align="left">
                     <TextField
@@ -210,10 +243,14 @@ function Register() {
                       type="text"
                       size="small"
                       variant="outlined"
-                      value={formData.name}
-                      onChange={setForm}
+                      // value={formData.name}
+                      // onChange={setForm}
+                      value={name}
                       className={classes.textField}
                       required
+                      onChange={(e)=>{
+                        setName(e.target.value)
+                      }}    
                     />
                   </Grid>
                   <Grid item xs={12} align="left">
@@ -224,23 +261,31 @@ function Register() {
                       type="email"
                       size="small"
                       variant="outlined"
-                      value={formData.email}
-                      onChange={setForm}
+                      // value={formData.email}
+                      value={email}
+                      // onChange={setForm}
                       className={classes.textField}
                       required
+                      onChange={(e)=>{
+                        setEmail(e.target.value)
+                      }} 
                     />
                   </Grid>
                   <Grid item xs={12} align="left">
                     <TextField
                       label="Mobile"
                       name="mobile"
-                      value={formData.mobile}
-                      onChange={setForm}
+                      // value={formData.mobile}
+                      // onChange={setForm}
+                      value={phone}
                       variant="outlined"
                       className={classes.textField}
                       size="small"
                       fullWidth
                       required
+                      onChange={(e)=>{
+                        setPhone(e.target.value)
+                      }} 
                       InputProps={{
                         startAdornment: (
                           <InputAdornment position="start">+94</InputAdornment>
@@ -256,10 +301,32 @@ function Register() {
                       type="text"
                       size="small"
                       variant="outlined"
-                      value={formData.nic}
-                      onChange={setForm}
+                      // value={formData.nic}
+                      value={nic}
+                      // onChange={setForm}
                       className={classes.textField}
                       required
+                      onChange={(e)=>{
+                        setNic(e.target.value)
+                      }} 
+                    />
+                  </Grid>
+                  <Grid item xs={12} align="left">
+                    <TextField
+                      fullWidth
+                      label="Password"
+                      name="Password"
+                      type="text"
+                      size="small"
+                      variant="outlined"
+                      // value={formData.nic}
+                      value={password}
+                      // onChange={setForm}
+                      className={classes.textField}
+                      required
+                      onChange={(e)=>{
+                        setPassword(e.target.value)
+                      }} 
                     />
                   </Grid>
                 </Grid>
@@ -271,7 +338,7 @@ function Register() {
                   spacing={2}
                 >
                   <Grid item>
-                    <Button fullWidth type="submit" className={classes.submit}>
+                    <Button fullWidth type="submit" className={classes.submit} onClick={RegisterAdmin}>
                       Save
                     </Button>
                   </Grid>

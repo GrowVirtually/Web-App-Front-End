@@ -1,8 +1,9 @@
-import React from 'react';
+import React , {useContext, useEffect, useState} from 'react';
 import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Title from './Title';
+import axios from 'axios';
 
 function preventDefault(event) {
   event.preventDefault();
@@ -31,6 +32,27 @@ const useStyles = makeStyles({
 });
 
 export default function Deposits(props) {
+
+  useEffect(() => {
+    getIncome();
+  }, []);
+
+  let [responseData, setResponseData] = React.useState('')
+  
+  const getIncome = async () => {
+  try {
+    const response = await axios.get(`https://grovi-backend.herokuapp.com/api/v1/bookings/checkout-session/1/4`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    })
+    console.log(response);
+    setResponseData(response.data.data);
+  } catch (error) {
+    console.error(error);
+  }
+};  
+
   const classes = useStyles();
   const {income,order} = props;
   return (
@@ -38,8 +60,7 @@ export default function Deposits(props) {
       
       <div className={classes.fontStyle}>Order Income</div>
       <Typography component="p" variant="h4">
-        {income}
-        Rs.3,024.00
+        Rs. 18000
       </Typography>
       <Typography color="textSecondary" className={classes.depositContext}>
         <TodayDate />

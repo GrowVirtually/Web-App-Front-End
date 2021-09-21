@@ -13,10 +13,10 @@ const data = [
   createData('Sunday', 300),
   createData('Monday', 600),
   createData('Tuesday', 800),
-  createData('Wednesday', 1500),
-  createData('Thursday', 2000),
-  createData('Friday', 2400),
-  createData('Satuerday', 2400),
+  createData('Wednesday', 100),
+  createData('Thursday', 20),
+  createData('Friday', 100),
+  createData('Satuerday', 200),
   createData('', undefined),
 ];
 

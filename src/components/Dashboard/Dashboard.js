@@ -87,9 +87,9 @@ export default function Dashboard() {
   const name = localStorage.getItem('Adminname');
   const getData = async () => {
     try {
-      const response = await axios.get(`https://grovi-backend.herokuapp.com/api/v1/bookings/checkout-session/1/4`, {
+      const response = await axios.get(`https://grovi-backend.herokuapp.com/api/v1/admins/dashboard`, {
         headers: {
-          Authorization: `Bearer ${name}`,
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
       })
       console.log(response);
@@ -100,28 +100,6 @@ export default function Dashboard() {
     }
   };
 
-  // let userId = userData.id;
-
-  // const fetchData = async () => {
-  //   const searchtext = {
-  //     "uId": userData.id
-  //   }
-  //   console.log(searchtext);
-
-  //   axios.get("https://grovi-backend.herokuapp.com/api/v1/bookings/checkout-session/1/4", {
-  //     headers: {
-  //       "access-control-allow-origin": "*",
-  //       "Content-type": "application/json; charset=UTF-8"
-  //     }
-  //   }).then((response) => {
-  //     console.log(response.data);
-  //     SetMap(response.data);
-  //   })
-
-  // }
-  // {mapset.map(student=> (
-  //   <FormRow title={student.title} id={student.lgId} url={student.url} />
-  // ))}
 
   return (
     <div className={classes.root} >

@@ -83,7 +83,7 @@ export default function Reports() {
             <Grid item xs={12} sm={6}>            
               <PageHeader
                 title="Trending Product This Week "
-                subTitle="###########Product Name Here"
+                subTitle=""
                 icon={<ShowChartIcon  fontSize="large" />}
               />
             </Grid>            

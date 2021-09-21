@@ -56,7 +56,7 @@ export default function AddAdmin() {
               />
             </Grid>
             <Grid xs={12} sm={12}>
-              <ViewTable/>
+              {/* <ViewTable/> */}
             </Grid>
           </Grid>
         </Container>

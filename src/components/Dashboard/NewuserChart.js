@@ -15,37 +15,37 @@ import {
 const data = [
   {
     name: 'Sunday',
-    userCount: 4000,    
+    userCount: 4,    
     
   },
   {
     name: 'Monday',
-    userCount: 3000,   
+    userCount: 3,   
     
   },
   {
     name: 'Tuesday',
-    userCount: 2000,    
+    userCount: 2,    
     
   },
   {
     name: 'Wednesday',
-    userCount: 2780,    
+    userCount: 2,    
    
   },
   {
     name: 'Thursday',
-    userCount: 1890,    
+    userCount: 1,    
     
   },
   {
     name: 'Friday',
-    userCount: 2390,    
+    userCount: 2,    
     
   },
   {
     name: 'Satureday',
-    userCount: 3490,
+    userCount: 3,
     
   },
 ];

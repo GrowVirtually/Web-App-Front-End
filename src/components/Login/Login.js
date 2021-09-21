@@ -116,6 +116,7 @@ export default function Login() {
         }
       }, (error) => {
         console.log(error);
+        alert("Only Admins Allow To Use Dashboard");
       })
   }
 

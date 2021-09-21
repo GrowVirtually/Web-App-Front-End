@@ -53,9 +53,6 @@ export default function ProfileCard(props) {
         }, 
       });
       console.log(response);
-      // const udata = console.log(response.data.data.profile);
-      sessionStorage.setItem('fname',response.data.data.profile.fname);
-      sessionStorage.setItem('lname',response.data.data.profile.lname);
       setResponseData(response.data.data.profile);
       
     } catch (error) {
@@ -83,74 +80,3 @@ export default function ProfileCard(props) {
   );
 }
 
-
-// _____________________________________________________________________________________________
-// useEffect(() =>{
-//   fetchData();
-// },[]);
-
-// let userId=userData.id;
-
-// const fetchData = async () => {
-//   const searchtext = {
-//       "uId": userData.id
-//   }
-//   console.log(searchtext);
-
-//   axios.post("http://localhost:5000/api/lgs/acd", searchtext, {
-//       headers: {
-//           "access-control-allow-origin": "*",
-//           "Content-type": "application/json; charset=UTF-8"
-//       }
-//   }).then((response) => {
-//       console.log(response.data);
-//       SetMap(response.data);
-//   })
-
-// }
-
-// {mapset.map(student=> (
-//   <FormRow title={student.title} id={student.lgId} url={student.url} />
-// ))}
-
-// function FormRow (props){
-//   var id = props.id;
-//   //var link="/viewLg?id="+id;
-//   var link="/viewLg";
-//   var imglink=LG;
-
-//   return (
-//       <React.Fragment>
-//           <Grid item xs={4}>
-//               <Card className={classes.root}>
-
-//                   <CardActionArea>
-//                       <CardMedia
-//                           component="img"
-//                           height="100"
-//                           src= {imglink}
-//                       />
-//                       <CardContent>
-//                           <Typography gutterBottom variant="h5" component="h2">
-//                               {props.title}
-//                           </Typography>
-//                       </CardContent>
-//                   </CardActionArea>
-
-//                   <CardActions className={classes.cardFooter}>
-//                       <Link to={link} className={classes.nounderline}>
-//                           <Button size="small"
-//                                   className={classes.donateButton}
-//                                   startIcon={<VideoCameraBackIcon/>}
-//                           >
-//                               Join Now
-//                           </Button>
-//                       </Link>
-
-//                   </CardActions>
-
-//               </Card>
-//           </Grid>
-//       </React.Fragment>
-//   );
-// }

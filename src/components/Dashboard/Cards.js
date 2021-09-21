@@ -1,9 +1,11 @@
-import React from 'react';
+import React , {useContext, useEffect, useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import PersonIcon from '@material-ui/icons/Person';
+import axios from 'axios';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,9 +29,28 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Cards(props) {
+export default function Cards() {
   const classes = useStyles();
-  const {users,gigsT,gigsE,gigsN} = props;
+  
+  useEffect(() => {
+    getGigs();
+  }, []);
+
+  let [responseData, setResponseData] = React.useState('')
+  
+  const getGigs = async () => {
+  try {
+    const response = await axios.get(`https://grovi-backend.herokuapp.com/api/v1/admins/dashboard`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    })
+    console.log(response);
+    setResponseData(response.data.data);
+  } catch (error) {
+    console.error(error);
+  }
+};  
 
   return (
     <div className={classes.root}>
@@ -39,8 +60,7 @@ export default function Cards(props) {
           <div className={classes.fontStyle}>Total Users</div>
           <br/>
           <Typography component="p" variant="h3">
-            320
-            {users}
+            {responseData.userCount}
           </Typography>
           {/* <PersonIcon/>
           <h5>
@@ -53,8 +73,7 @@ export default function Cards(props) {
           <div className={classes.fontStyle}>Total GIGs</div> 
           <br/>
           <Typography component="p" variant="h3">
-            456
-            {gigsT}
+              {responseData.gigCount}
           </Typography>
           </Paper>
         </Grid>
@@ -63,8 +82,7 @@ export default function Cards(props) {
           <div className={classes.fontStyle}>Expiring GIGs</div>
           <br/>
           <Typography component="p" variant="h3">
-            30
-            {gigsE}
+            0
           </Typography>
           </Paper>
         </Grid>
@@ -73,8 +91,7 @@ export default function Cards(props) {
           <div className={classes.fontStyle}>New GIGs</div>
           <br/>
           <Typography component="p" variant="h3">
-            79
-            {gigsN}
+          {responseData.gigCount}
           </Typography>
           </Paper>
         </Grid>

@@ -55,6 +55,7 @@ export default function SignUp() {
                   id="firstName"
                   label="First Name"
                   autoFocus
+                  
                 />
               </Grid>
               <Grid item xs={12} sm={6}>

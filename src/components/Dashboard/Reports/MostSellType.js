@@ -1,6 +1,6 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent,useContext, useEffect, useState } from 'react';
 import { PieChart, Pie, Sector, ResponsiveContainer } from 'recharts';
-
+import axios from 'axios';
 const data = [
   { name: 'Fruit', value: 400 },
   { name: 'Vegitables', value: 300 },
@@ -52,6 +52,30 @@ const renderActiveShape = (props) => {
     </g>
   );
 };
+
+// function fetchData(){
+//   const classes = useStyles();
+  
+//   useEffect(() => {
+//     getGigs();
+//   }, []);
+
+//   let [responseData, setResponseData] = React.useState('')
+  
+//   const getGigs = async () => {
+//   try {
+//     const response = await axios.get(`https://grovi-backend.herokuapp.com/api/v1/admins/dashboard`, {
+//       headers: {
+//         Authorization: `Bearer ${localStorage.getItem('token')}`,
+//       },
+//     })
+//     console.log(response);
+//     setResponseData(response.data.data);
+//   } catch (error) {
+//     console.error(error);
+//   }
+// };  
+// };
 
 export default class MostSellType extends PureComponent {
   static demoUrl = 'https://codesandbox.io/s/pie-chart-with-customized-active-shape-y93si';
