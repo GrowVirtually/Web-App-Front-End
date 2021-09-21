@@ -30,13 +30,15 @@ const useStyles = makeStyles({
   }
 });
 
-export default function Deposits() {
+export default function Deposits(props) {
   const classes = useStyles();
+  const {income,order} = props;
   return (
     <React.Fragment>
       
       <div className={classes.fontStyle}>Order Income</div>
       <Typography component="p" variant="h4">
+        {income}
         Rs.3,024.00
       </Typography>
       <Typography color="textSecondary" className={classes.depositContext}>
@@ -44,6 +46,7 @@ export default function Deposits() {
       </Typography>
       <div className={classes.fontStyle}>Order Count</div>
       <Typography component="p" variant="h4">
+        {order}
         25
       </Typography>
       {/* <div>

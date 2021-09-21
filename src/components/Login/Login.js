@@ -108,10 +108,11 @@ export default function Login() {
         password,        
       })
       .then((response) => {
-        console.log(response.status);
-        // localStorage.setItem('token',response.data.token);
-        sessionStorage.setItem('token',response.data.token);
-        localStorage.setItem('Adminname',response.data.fname);
+        console.log(response);
+        localStorage.setItem('token',response.data.token);
+        console.log(localStorage.getItem('token'));
+        // sessionStorage.setItem('token',response.data.token);
+        // localStorage.setItem('Adminname',response.data.user.fname);
           if(response.data.status === "success"){
             window.location = "/dashboard";     
         }

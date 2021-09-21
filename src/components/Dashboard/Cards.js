@@ -27,8 +27,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Cards() {
+export default function Cards(props) {
   const classes = useStyles();
+  const {users,gigsT,gigsE,gigsN} = props;
 
   return (
     <div className={classes.root}>
@@ -39,6 +40,7 @@ export default function Cards() {
           <br/>
           <Typography component="p" variant="h3">
             320
+            {users}
           </Typography>
           {/* <PersonIcon/>
           <h5>
@@ -52,6 +54,7 @@ export default function Cards() {
           <br/>
           <Typography component="p" variant="h3">
             456
+            {gigsT}
           </Typography>
           </Paper>
         </Grid>
@@ -61,6 +64,7 @@ export default function Cards() {
           <br/>
           <Typography component="p" variant="h3">
             30
+            {gigsE}
           </Typography>
           </Paper>
         </Grid>
@@ -70,6 +74,7 @@ export default function Cards() {
           <br/>
           <Typography component="p" variant="h3">
             79
+            {gigsN}
           </Typography>
           </Paper>
         </Grid>

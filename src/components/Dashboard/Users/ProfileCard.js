@@ -40,19 +40,19 @@ const useStyles = makeStyles((theme) => ({
 export default function ProfileCard() {
   const classes = useStyles();
   useEffect(() => {
+    console.log(localStorage.getItem('token'));
+    console.log('abcd');
     getProfile();
   }, []);
   
-  
-  const jwt = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZSI6Iis5NDc2MjQyMDA1MiIsImlhdCI6MTYzMjE4MDEyNiwiZXhwIjoxNjM5OTU2MTI2fQ.OTTHMMf9UDep3NjdfstENlzBXO6QE2W5yb3jROboyQs';
   const getProfile = async () => {
     try {
       const response = await axios.get(`https://grovi-backend.herokuapp.com/api/v1/users/me`, {
         headers: {
-          Authorization: `Bearer ${jwt}`,
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
       });
-      console.log(response.data.data.profile);
+      console.log(response);
       
     } catch (error) {
       console.error(error);
@@ -67,9 +67,11 @@ export default function ProfileCard() {
             </Card>
             <div className={classes.userdata}>
                 <h3>User Name :</h3>
-                <h3>e-mail    :</h3>
-                <h3>Telephone :</h3>
-                <h3>Added Date:</h3>
+                <h3>Telephone    :</h3>
+                <h3>DOB :</h3>
+                <h3>NIC:</h3>
+                <h3>E-Mail :</h3>
+                <h3>Gender:</h3>
                 <h3>Status    : Admin</h3>
             </div>
         </Paper>
