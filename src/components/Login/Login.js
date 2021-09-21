@@ -14,8 +14,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { CallToActionSharp } from '@material-ui/icons';
 import axios from 'axios';
-import SnackBarAlert from '../SnackBarAlert';
-import HeaderDB from '../Dashboard/Header';
+
 
 function Copyright() {
   return (
@@ -111,8 +110,7 @@ export default function Login() {
         console.log(response);
         localStorage.setItem('token',response.data.token);
         console.log(localStorage.getItem('token'));
-        // sessionStorage.setItem('token',response.data.token);
-        // localStorage.setItem('Adminname',response.data.user.fname);
+        localStorage.setItem('Adminname',response.data.user.fname);
           if(response.data.status === "success"){
             window.location = "/dashboard";     
         }

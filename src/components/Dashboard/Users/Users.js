@@ -8,6 +8,7 @@ import Container from '@material-ui/core/Container';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import ProfileCard from './ProfileCard';
+import HeaderDB from './../Header';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,13 +32,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const name = localStorage.getItem('Adminname');
+
 export default function Profile() {
   const classes = useStyles();
   
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <Header />
+      <HeaderDB name={name} />
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>

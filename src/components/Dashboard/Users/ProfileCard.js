@@ -37,11 +37,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function ProfileCard() {
+export default function ProfileCard(props) {
   const classes = useStyles();
+  let [responseData, setResponseData] = React.useState('')
+
   useEffect(() => {
-    console.log(localStorage.getItem('token'));
-    console.log('abcd');
     getProfile();
   }, []);
   
@@ -50,15 +50,19 @@ export default function ProfileCard() {
       const response = await axios.get(`https://grovi-backend.herokuapp.com/api/v1/users/me`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
-        },
+        }, 
       });
       console.log(response);
+      // const udata = console.log(response.data.data.profile);
+      sessionStorage.setItem('fname',response.data.data.profile.fname);
+      sessionStorage.setItem('lname',response.data.data.profile.lname);
+      setResponseData(response.data.data.profile);
       
     } catch (error) {
       console.error(error);
     }
   };
-
+  console.log(props)
   return (
     <div className={classes.root}>
         <Paper className={classes.paper}>
@@ -66,15 +70,87 @@ export default function ProfileCard() {
                 <AccountCircleIcon fontSize="large"/>
             </Card>
             <div className={classes.userdata}>
-                <h3>User Name :</h3>
-                <h3>Telephone    :</h3>
-                <h3>DOB :</h3>
-                <h3>NIC:</h3>
-                <h3>E-Mail :</h3>
-                <h3>Gender:</h3>
+                <h3>User Name :{responseData.fname} {responseData.lname}</h3>
+                <h3>Telephone :   {responseData.phone}</h3>
+                <h3>DOB : {responseData.dob} </h3>
+                <h3>NIC: {responseData.nic} </h3>
+                <h3>E-Mail : {responseData.email} </h3>
+                <h3>Gender: {responseData.gender} </h3>
                 <h3>Status    : Admin</h3>
             </div>
         </Paper>
     </div>
   );
 }
+
+
+// _____________________________________________________________________________________________
+// useEffect(() =>{
+//   fetchData();
+// },[]);
+
+// let userId=userData.id;
+
+// const fetchData = async () => {
+//   const searchtext = {
+//       "uId": userData.id
+//   }
+//   console.log(searchtext);
+
+//   axios.post("http://localhost:5000/api/lgs/acd", searchtext, {
+//       headers: {
+//           "access-control-allow-origin": "*",
+//           "Content-type": "application/json; charset=UTF-8"
+//       }
+//   }).then((response) => {
+//       console.log(response.data);
+//       SetMap(response.data);
+//   })
+
+// }
+
+// {mapset.map(student=> (
+//   <FormRow title={student.title} id={student.lgId} url={student.url} />
+// ))}
+
+// function FormRow (props){
+//   var id = props.id;
+//   //var link="/viewLg?id="+id;
+//   var link="/viewLg";
+//   var imglink=LG;
+
+//   return (
+//       <React.Fragment>
+//           <Grid item xs={4}>
+//               <Card className={classes.root}>
+
+//                   <CardActionArea>
+//                       <CardMedia
+//                           component="img"
+//                           height="100"
+//                           src= {imglink}
+//                       />
+//                       <CardContent>
+//                           <Typography gutterBottom variant="h5" component="h2">
+//                               {props.title}
+//                           </Typography>
+//                       </CardContent>
+//                   </CardActionArea>
+
+//                   <CardActions className={classes.cardFooter}>
+//                       <Link to={link} className={classes.nounderline}>
+//                           <Button size="small"
+//                                   className={classes.donateButton}
+//                                   startIcon={<VideoCameraBackIcon/>}
+//                           >
+//                               Join Now
+//                           </Button>
+//                       </Link>
+
+//                   </CardActions>
+
+//               </Card>
+//           </Grid>
+//       </React.Fragment>
+//   );
+// }
