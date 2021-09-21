@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import { Paper, Card, Typography, makeStyles, Button } from '@material-ui/core'
 import Grid from '@material-ui/core/Grid';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -35,8 +36,28 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
+
 export default function ProfileCard() {
   const classes = useStyles();
+  useEffect(() => {
+    getProfile();
+  }, []);
+  
+  
+  const jwt = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZSI6Iis5NDc2MjQyMDA1MiIsImlhdCI6MTYzMjE4MDEyNiwiZXhwIjoxNjM5OTU2MTI2fQ.OTTHMMf9UDep3NjdfstENlzBXO6QE2W5yb3jROboyQs';
+  const getProfile = async () => {
+    try {
+      const response = await axios.get(`https://grovi-backend.herokuapp.com/api/v1/users/me`, {
+        headers: {
+          Authorization: `Bearer ${jwt}`,
+        },
+      });
+      console.log(response.data.data.profile);
+      
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <div className={classes.root}>

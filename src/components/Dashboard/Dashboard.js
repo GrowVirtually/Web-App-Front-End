@@ -16,6 +16,7 @@ import Cards from './Cards';
 import HeaderDB from './Header';
 import axios from 'axios';
 import AuthContext from '../../context/auth-context';
+import { getToken } from '../../Util/Commons';
 
 function Copyright() {
   return (
@@ -85,14 +86,14 @@ export default function Dashboard() {
     getData();
   }, []);
 
-  const name = localStorage.getItem('name');
+  const name = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZSI6Iis5NDc2MjQyMDA1MiIsImlhdCI6MTYzMjE4MDEyNiwiZXhwIjoxNjM5OTU2MTI2fQ.OTTHMMf9UDep3NjdfstENlzBXO6QE2W5yb3jROboyQs';
   console.log(name);
 
   const getData = async () => {
     try {
       const response = await axios.get(`https://grovi-backend.herokuapp.com/api/v1/bookings/checkout-session/1/4`, {
         headers: {
-          Authorization: `Bearer` + localStorage.getItem('token'),
+          Authorization: `Bearer ${name}`,
         },
       })
       console.log(response);

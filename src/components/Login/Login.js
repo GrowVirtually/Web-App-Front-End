@@ -71,34 +71,53 @@ export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
  
+  // const handleLogin = async (e) => {
+  //   e.preventDefault();
+  //   try{
+  //     const logindetails = await axios.post(`https://grovi-backend.herokuapp.com/api/v1/admins/login`,{
+  //       email,
+  //       password,        
+  //     })
+  //     // .then((response) => {
+  //     //   console.log(response.status);
+  //     // }, (error) => {
+  //     //   console.log(error);
+  //     // })
+  //     console.log(process.env.HOST_PORT);
+  //     console.log(logindetails);         
+      
+  //     if(logindetails.data.status === "success"){
+  //       console.log(logindetails.data.user.fname);
+  //       localStorage.setItem('token',logindetails.data.token);
+  //       localStorage.setItem('Adminname',logindetails.data.fname);
+  //       window.location = "/dashboard";     
+  //     }
+  //   } 
+
+  //   catch(error){
+  //     console.error(error);
+  //     console.log('failed'); 
+  //     alert("Only Admins Allow To Use");       
+  //   }
+  // }
+
   const handleLogin = async (e) => {
     e.preventDefault();
-    try{
-      const logindetails = await axios.post(`https://grovi-backend.herokuapp.com/api/v1/admins/login`,{
+    axios.post(`https://grovi-backend.herokuapp.com/api/v1/admins/login`,{
         email,
         password,        
       })
-      // .then((response) => {
-      //   console.log(response.status);
-      // }, (error) => {
-      //   console.log(error);
-      // })
-      console.log(process.env.HOST_PORT);
-      console.log(logindetails);         
-      
-      if(logindetails.data.status === "success"){
-        console.log(logindetails.data.user.fname);
-        localStorage.setItem('token',logindetails.data.token);
-        localStorage.setItem('Adminname',logindetails.data.fname);
-        window.location = "/dashboard";     
-      }
-    } 
-
-    catch(error){
-      console.error(error);
-      console.log('failed'); 
-      alert("Only Admins Allow To Use");       
-    }
+      .then((response) => {
+        console.log(response.status);
+        // localStorage.setItem('token',response.data.token);
+        sessionStorage.setItem('token',response.data.token);
+        localStorage.setItem('Adminname',response.data.fname);
+          if(response.data.status === "success"){
+            window.location = "/dashboard";     
+        }
+      }, (error) => {
+        console.log(error);
+      })
   }
 
   return (
