@@ -46,8 +46,8 @@ export default function Deposits(props) {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
       },
     })
-    console.log(response);
-    setResponseData(response.data.data);
+    console.log(response.data.session);
+    setResponseData(response.data.session);
   } catch (error) {
     console.error(error);
   }
@@ -60,7 +60,8 @@ export default function Deposits(props) {
       
       <div className={classes.fontStyle}>Order Income</div>
       <Typography component="p" variant="h4">
-        Rs. 18000
+        {/* Rs. 18000 */}
+        Rs . {responseData.amount_total}
       </Typography>
       <Typography color="textSecondary" className={classes.depositContext}>
         <TodayDate />

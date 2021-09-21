@@ -60,39 +60,40 @@ export default function Orders() {
                 </Paper>
               </Grid>          
           </Grid>
-            <Grid container spacing={3}>
-              <Grid item xs={6} sm={3}>
-                {/* <Summery/> */}
-                <PageHeader
-                    title="Total Orders"
-                    subTitle="25"
-                    icon={<ShoppingBasketIcon fontSize="medium" />}
-                  />
-              </Grid>
-              <Grid item xs={6} sm={3}>
-                <PageHeader
-                    title="Total Delivers"
-                    subTitle="25"
-                    icon={<StoreIcon  fontSize="medium" />}
-                  />
-              </Grid>
-              <Grid item xs={6} sm={3}>
-                <PageHeader
-                    title="Total Sellers"
-                    subTitle="25"
-                    icon={<PaymentIcon fontSize="medium" />}
-                  />
-              </Grid>
-              <Grid item xs={6} sm={3}>
-                <PageHeader
-                    title="Total Buyers"
-                    subTitle="25"
-                    icon={<EmojiPeopleIcon fontSize="medium" />}
-                  />
-              </Grid>
-          </Grid>
         </Container>
       </main>
     </div>
   );
 }
+
+            {/* <Grid container spacing={3}>
+              <Grid item xs={6} sm={3}>
+                {/* <Summery/> */}
+          //       <PageHeader
+          //           title="Total Orders"
+          //           subTitle="25"
+          //           icon={<ShoppingBasketIcon fontSize="medium" />}
+          //         />
+          //     </Grid>
+          //     <Grid item xs={6} sm={3}>
+          //       <PageHeader
+          //           title="Total Delivers"
+          //           subTitle="25"
+          //           icon={<StoreIcon  fontSize="medium" />}
+          //         />
+          //     </Grid>
+          //     <Grid item xs={6} sm={3}>
+          //       <PageHeader
+          //           title="Total Sellers"
+          //           subTitle="25"
+          //           icon={<PaymentIcon fontSize="medium" />}
+          //         />
+          //     </Grid>
+          //     <Grid item xs={6} sm={3}>
+          //       <PageHeader
+          //           title="Total Buyers"
+          //           subTitle="25"
+          //           icon={<EmojiPeopleIcon fontSize="medium" />}
+          //         />
+          //     </Grid>
+          // </Grid> */}

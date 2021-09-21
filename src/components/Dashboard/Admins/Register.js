@@ -95,37 +95,49 @@ function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [phone, setPhone] = useState('');
-  const [nic, setNic] = useState('');
-  const [name, setName] = useState('');
+  const [fname, setfName] = useState('');
+  const [lname, setlName] = useState('');
 
   const [alertShow, setAlertShow] = useState(false);
   const [alertData, setAlertData] = useState({ severity: "", msg: "" });
 
-  const RegisterAdmin = () =>{
-    const SubmitData = {
-      email:email,
-      password:password,
-      phone:phone,
-      nic:nic,
-      name:name, 
-    };
-    console.log(SubmitData);
-    alert(SubmitData);
-    axios.post(`https://grovi-backend.herokuapp.com/api/v1/admins/addNew`,
-    formData
-    )
-    .then(response => {
-      if (response.data.error) {
-        alert(response.data.error);
-      } else {
-        console.log(response.data);
-      }
-    })
-    .catch(error => {
-      alert(error);
+  const RegisterAdmin = async (e) =>{
+    e.preventDefault();
+    // console.log(phone+fname+lname+password+email);
+    console.log(localStorage.getItem('token'));
+    // alert(SubmitData);
+    var data = JSON.stringify({
+      fname,
+      lname,
+      email,
+      phone,
+      password
     });
-  };
-
+    
+    var config = {
+      method: 'post',
+      url: 'https://grovi-backend.herokuapp.com/api/v1/admins/addNew',
+      headers: { 
+        'Authorization': `Bearer ${localStorage.getItem('token')}`, 
+        'Content-Type': 'application/json',         
+      },
+      data : data
+    };
+  
+    axios(config)
+    .then(function (response) {
+      console.log(JSON.stringify(response.data));
+      if(response.data.status === "success"){
+        alert("Admin Added Successfully");     
+    }
+    
+    })
+    .catch(function (error) {
+      console.log(error);
+      alert("Something Went Wrong");
+    });
+    
+  }
   const displayAlert = () => {
     return (
       <SnackBarAlert
@@ -233,23 +245,41 @@ function Register() {
               >
                 Admin Can Access To The Grovi Dashboard
               </Typography>
-              <form  >
+              
                 <Grid item container alignItems="center" spacing={3}>
                   <Grid item xs={12} align="left">
                     <TextField
                       fullWidth
-                      label="Name"
-                      name="name"
+                      label="First Name"
+                      name="fname"
                       type="text"
                       size="small"
                       variant="outlined"
                       // value={formData.name}
                       // onChange={setForm}
-                      value={name}
+                      value={fname}
                       className={classes.textField}
                       required
                       onChange={(e)=>{
-                        setName(e.target.value)
+                        setfName(e.target.value)
+                      }}    
+                    />
+                  </Grid>
+                  <Grid item xs={12} align="left">
+                    <TextField
+                      fullWidth
+                      label="Last Name"
+                      name="lname"
+                      type="text"
+                      size="small"
+                      variant="outlined"
+                      // value={formData.name}
+                      // onChange={setForm}
+                      value={lname}
+                      className={classes.textField}
+                      required
+                      onChange={(e)=>{
+                        setlName(e.target.value)
                       }}    
                     />
                   </Grid>
@@ -274,7 +304,7 @@ function Register() {
                   <Grid item xs={12} align="left">
                     <TextField
                       label="Mobile"
-                      name="mobile"
+                      name="phone"
                       // value={formData.mobile}
                       // onChange={setForm}
                       value={phone}
@@ -286,14 +316,14 @@ function Register() {
                       onChange={(e)=>{
                         setPhone(e.target.value)
                       }} 
-                      InputProps={{
-                        startAdornment: (
-                          <InputAdornment position="start">+94</InputAdornment>
-                        ),
-                      }}
+                      // InputProps={{
+                      //   startAdornment: (
+                      //     <InputAdornment position="start">+94</InputAdornment>
+                      //   ),
+                      // }}
                     />
                   </Grid>
-                  <Grid item xs={12} align="left">
+                  {/* <Grid item xs={12} align="left">
                     <TextField
                       fullWidth
                       label="NIC"
@@ -310,13 +340,13 @@ function Register() {
                         setNic(e.target.value)
                       }} 
                     />
-                  </Grid>
+                  </Grid> */}
                   <Grid item xs={12} align="left">
                     <TextField
                       fullWidth
                       label="Password"
                       name="Password"
-                      type="text"
+                      type="Password"
                       size="small"
                       variant="outlined"
                       // value={formData.nic}
@@ -343,7 +373,7 @@ function Register() {
                     </Button>
                   </Grid>
                 </Grid>
-              </form>
+              
             </Grid>
           </Grid>
         </FloatCard>

@@ -12,24 +12,24 @@ import axios from 'axios';
 export default function OrderTable() {
 
   useEffect(() => {
-    OrdertableData();
+   orderData();
   }, []);
-  
+
   let [responseData, setResponseData] = React.useState('')
-    
-  const OrdertableData = async () => {
+  
+  const orderData = async () => {
   try {
-    const response = await axios.get(`https://grovi-backend.herokuapp.com/api/v1/admins/dashboard`, {
+    const response = await axios.get(`https://grovi-backend.herokuapp.com/api/v1/bookings/checkout-session/1/4`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
       },
     })
-    console.log(response);
-    setResponseData(response.data.data);
+    console.log(response.data.session);
+    setResponseData(response.data.session);
   } catch (error) {
     console.error(error);
   }
-  };  
+};  
 
 
   return (
@@ -57,18 +57,21 @@ const columns = [
     editable: false,
   },
   { field: 'Location', headerName: 'Location', width: 180, editable: false },
-  { field: '', headerName: 'Seller', width: 180, editable: false },
-  { field: '', headerName: 'Price', width: 180, editable: false },
+  { field: 'Seller', headerName: 'Seller', width: 180, editable: false },
+  { field: 'Price', headerName: 'Price', width: 180, editable: false },
 ];
+
 
 const rows = [
   {
     id: 1,
     name: randomTraderName(),
-    age: 25,
+    age: '23',
     dateCreated: randomCreatedDate(),
     lastLogin: randomUpdatedDate(),
     Location: 'Galle',
+    Seller:'abcd',
+    Price:'200',
   },
   // {
   //   id: 2,
