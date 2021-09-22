@@ -163,7 +163,7 @@ const ViewTable = () => {
     <div className="app">
       
       <MaterialTable
-        title="Admin Details"
+        title="Gig Details"
         columns={columns}
         data={user}
         options={{

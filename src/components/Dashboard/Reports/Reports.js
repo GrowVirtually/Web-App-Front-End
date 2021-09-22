@@ -23,7 +23,7 @@ function TodayDate(){
   );
 }
 
-const name =TodayDate();
+const fname =TodayDate();
 
 const ref = React.createRef();
 const rootElement = document.getElementById("root");
@@ -155,7 +155,7 @@ export default function Reports() {
               </Paper>        
             </Grid>
           </Grid>
-          <Pdf  targetRef={ref} filename={name} options={options} x={.5} y={.5} scale={0.8}>
+          <Pdf  targetRef={ref} filename={fname} options={options} x={.5} y={.5} scale={0.8}>
         {({toPdf}) => (
             <Button variant="contained" onClick={toPdf} style={{backgroundColor:'#263238',color:'#E8E8E8'}}>Generate Report</Button>
         )}

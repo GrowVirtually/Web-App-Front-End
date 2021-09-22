@@ -281,21 +281,21 @@ const ComplainTable = () => {
         data={user}
         options={{
           headerStyle: { borderBottomColor: 'green', borderBottomWidth: '3px', fontFamily: 'verdana' },
-          actionsColumnIndex: -1
+          actionsColumnIndex: -2
         }}
         editable={{
           onRowUpdate: (newData, oldData) =>
             new Promise((resolve) => {
-              handleRowUpdate(newData, oldData, resolve);
+              // handleRowUpdate(newData, oldData, resolve);
 
             }),
           onRowAdd: (newData) =>
             new Promise((resolve) => {
-              handleRowAdd(newData, resolve)
+              // handleRowAdd(newData, resolve)
             }),
           onRowDelete: (oldData) =>
             new Promise((resolve) => {
-              handleRowDelete(oldData, resolve)
+              // handleRowDelete(oldData, resolve)
             }),
         }}
       />

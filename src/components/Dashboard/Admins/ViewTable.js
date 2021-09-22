@@ -23,7 +23,8 @@ const ViewTable = () => {
     { title: 'First Name', field: 'fname' },
     { title: 'Last Name', field: 'lname' },
     { title: 'Email', field: 'email' },
-    { title: 'Phone', field: 'phonbe' },
+    { title: 'Phone', field: 'phone' },
+    { title: 'Added Date', field: 'createdAt' },
   ]
 
   // let data = [
@@ -31,13 +32,13 @@ const ViewTable = () => {
   // ]  
 
   useEffect(() => {
-    axios.get(`https://grovi-backend.herokuapp.com/api/v1/gigs/all/5.977553814423967,80.34890374890934?distance=60000&searchTag=rro`,{
+    axios.get(`https://grovi-backend.herokuapp.com/api/v1/admins/all`,{
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
       },
     })
       .then(res => {
-        const users = res.data.data.gigs;
+        const users = res.data.data.admins;
         setUser(users);
         console.log(users);
       })
@@ -65,38 +66,49 @@ const ViewTable = () => {
       errorList.push("Try Again, Enter website url before submitting")
     }
 
-    // if (errorList.length < 1) {
-    //   axios.put(`https://jsonplaceholder.typicode.com/users/${newData.id}`, newData)
-    //     .then(response => {
-    //       const updateUser = [...user];
-    //       const index = oldData.tableData.id;
-    //       updateUser[index] = newData;
-    //       setUser([...updateUser]);
-    //       resolve()
-    //       setIserror(false)
-    //       setErrorMessages([])
-    //     })
-    //     .catch(error => {
-    //       setErrorMessages(["Update failed! Server error"])
-    //       setIserror(true)
-    //       resolve()
+    if (errorList.length < 1) {
+      const data = newData.id;
+      axios.patch(`https://grovi-backend.herokuapp.com/api/v1/admins/edit`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+       data,         
+       newData,
+      })
+        .then(response => {
+          const updateUser = [...user];
+          const index = oldData.tableData.id;
+          updateUser[index] = newData;
+          setUser([...updateUser]);
+          resolve()
+          setIserror(false)
+          setErrorMessages([])
+        })
+        .catch(error => {
+          setErrorMessages(["Update failed! Server error"])
+          setIserror(true)
+          resolve()
 
-    //     })
-    // } else {
-    //   setErrorMessages(errorList)
-    //   setIserror(true)
-    //   resolve()
+        })
+    } else {
+      setErrorMessages(errorList)
+      setIserror(true)
+      resolve()
 
-    // }
+    }
   }
 
 
   //function for deleting a row
   const handleRowDelete = (oldData, resolve) => {
-    axios.delete(`https://grovi-backend.herokuapp.com/api/v1/admins/edit/${oldData.id}`,{
+    const data = oldData.id;
+    console.log(data);
+    
+    axios.delete(`https://grovi-backend.herokuapp.com/api/v1/admins/edit `,{
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
       },
+      data,
     })
       .then(response => {
         const dataDelete = [...user];
@@ -114,46 +126,46 @@ const ViewTable = () => {
 
 
   //function for adding a new row to the table
-  const handleRowAdd = (newData, resolve) => {
-    //validating the data inputs
-    let errorList = []
-    if (newData.name === "") {
-      errorList.push("Try Again, You didn't enter the name field")
-    }
-    if (newData.username === "") {
-      errorList.push("Try Again, You didn't enter the Username field")
-    }
-    if (newData.email === "" || validateEmail(newData.email) === false) {
-      errorList.push("Oops!!! Please enter a valid email")
-    }
-    if (newData.phone === "") {
-      errorList.push("Try Again, Phone number field can't be blank")
-    }
-    if (newData.website === "") {
-      errorList.push("Try Again, Enter website url before submitting")
-    }
+  // const handleRowAdd = (newData, resolve) => {
+  //   //validating the data inputs
+  //   let errorList = []
+  //   if (newData.name === "") {
+  //     errorList.push("Try Again, You didn't enter the name field")
+  //   }
+  //   if (newData.username === "") {
+  //     errorList.push("Try Again, You didn't enter the Username field")
+  //   }
+  //   if (newData.email === "" || validateEmail(newData.email) === false) {
+  //     errorList.push("Oops!!! Please enter a valid email")
+  //   }
+  //   if (newData.phone === "") {
+  //     errorList.push("Try Again, Phone number field can't be blank")
+  //   }
+  //   if (newData.website === "") {
+  //     errorList.push("Try Again, Enter website url before submitting")
+  //   }
 
-    if (errorList.length < 1) {
-      axios.post(`https://grovi-backend.herokuapp.com/api/v1/admins/edit`, newData)
-        .then(response => {
-          let newUserdata = [...user];
-          newUserdata.push(newData);
-          setUser(newUserdata);
-          resolve()
-          setErrorMessages([])
-          setIserror(false)
-        })
-        .catch(error => {
-          setErrorMessages(["Cannot add data. Server error!"])
-          setIserror(true)
-          resolve()
-        })
-    } else {
-      setErrorMessages(errorList)
-      setIserror(true)
-      resolve()
-    }
-  }
+  //   if (errorList.length < 1) {
+  //     axios.post(`https://grovi-backend.herokuapp.com/api/v1/admins/edit`, newData)
+  //       .then(response => {
+  //         let newUserdata = [...user];
+  //         newUserdata.push(newData);
+  //         setUser(newUserdata);
+  //         resolve()
+  //         setErrorMessages([])
+  //         setIserror(false)
+  //       })
+  //       .catch(error => {
+  //         setErrorMessages(["Cannot add data. Server error!"])
+  //         setIserror(true)
+  //         resolve()
+  //       })
+  //   } else {
+  //     setErrorMessages(errorList)
+  //     setIserror(true)
+  //     resolve()
+  //   }
+  // }
 
 
   return (
@@ -175,7 +187,7 @@ const ViewTable = () => {
             }),
           onRowAdd: (newData) =>
             new Promise((resolve) => {
-              handleRowAdd(newData, resolve)
+              // handleRowAdd(newData, resolve)
             }),
           onRowDelete: (oldData) =>
             new Promise((resolve) => {
