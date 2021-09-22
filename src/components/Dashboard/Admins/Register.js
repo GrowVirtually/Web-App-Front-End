@@ -134,7 +134,6 @@ function Register() {
     })
     .catch(function (error) {
       console.log(error);
-      alert("Something Went Wrong");
     });
     
   }

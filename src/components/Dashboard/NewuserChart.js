@@ -30,22 +30,22 @@ const data = [
   },
   {
     name: 'Wednesday',
-    userCount: 2,    
+    userCount: 0,    
    
   },
   {
     name: 'Thursday',
-    userCount: 1,    
+    userCount: 0,    
     
   },
   {
     name: 'Friday',
-    userCount: 2,    
+    userCount: 0,    
     
   },
   {
     name: 'Satureday',
-    userCount: 3,
+    userCount: 0,
     
   },
 ];

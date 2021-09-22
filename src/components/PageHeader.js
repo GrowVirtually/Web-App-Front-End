@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
     pageTitle:{
         paddingLeft:theme.spacing(4),
         '& .MuiTypography-subtitle2':{
-            opacity:'0.6'
+            opacity:'0.8'
         },
         color:'#E8E8E8',
         // fontFamily: 'Nunito',

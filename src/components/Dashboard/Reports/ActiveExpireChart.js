@@ -4,51 +4,51 @@ import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Resp
 const data = [
   {
     name: 'Monday',
-    active: 4000,
-    expire: 2400,
+    active: 4,
+    expire: 0,
     amt: 2400,
   },
   {
     name: 'Tuesday',
-    active: 3000,
-    expire: 1398,
+    active: 6,
+    expire: 2,
     amt: 2210,
   },
   {
     name: 'Wednesday',
-    active: 2000,
-    expire: 9800,
+    active: 2,
+    expire: 0,
     amt: 2290,
   },
   {
     name: 'Thursday',
-    active: 2780,
-    expire: 3908,
+    active: 0,
+    expire: 0,
     amt: 2000,
   },
   {
     name: 'Friday',
-    active: 1890,
-    expire: 4800,
+    active: 0,
+    expire: 4,
     amt: 2181,
   },
   {
     name: 'Satureday',
-    active: 2390,
-    expire: 3800,
+    active: 0,
+    expire: 0,
     amt: 2500,
   },
   {
     name: 'Sunday',
-    active: 3490,
-    expire: 4300,
+    active: 0,
+    expire: 5,
     amt: 2100,
   },
 ];
 
 export default class ActiveExpireChart extends PureComponent {
   
-  render() {
+ render() {
     return (
       <ResponsiveContainer width="100%" height="100%">
         <BarChart

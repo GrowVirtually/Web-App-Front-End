@@ -1,6 +1,6 @@
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { makeStyles } from '@material-ui/core/styles';
-import React from 'react';
+import React , {useContext, useEffect, useState}from 'react';
 import Header from './../Header';
 import BarChartIcon from '@material-ui/icons/BarChart';
 import ShowChartIcon from '@material-ui/icons/ShowChart';
@@ -15,6 +15,7 @@ import MostSellType from './MostSellType';
 import ReactDOM from "react-dom";
 import Pdf from "react-to-pdf";
 import Button from '@material-ui/core/Button';
+import axios from 'axios';
 
 function TodayDate(){
   return(      
@@ -65,6 +66,29 @@ const useStyles = makeStyles((theme) => ({
 export default function Reports() {
   const classes = useStyles();
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
+  
+  useEffect(() => {
+    getData();
+  }, []);
+
+  const name = localStorage.getItem('Adminname');
+
+  let [responseData, setResponseData] = React.useState('')
+  const getData = async () => {
+    try {
+      const response = await axios.get(`https://grovi-backend.herokuapp.com/api/v1/admins/dashboard`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      })
+      console.log(response);
+      // console.log(localStorage.getItem('token'));
+      setResponseData(response.data.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };  
+  
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -82,8 +106,8 @@ export default function Reports() {
             </Grid>
             <Grid item xs={12} sm={6}>            
               <PageHeader
-                title="Trending Product This Week "
-                subTitle=""
+                title="Total No of Orders "
+                subTitle={responseData.orderCount}
                 icon={<ShowChartIcon  fontSize="large" />}
               />
             </Grid>            
@@ -97,12 +121,31 @@ export default function Reports() {
               </Paper>        
             </Grid>
           </Grid>
+          <Grid container spacing={3}>
+            <Grid item xs={12} sm={6}>            
+              <PageHeader
+                title="Fruit Gig Count "
+                subTitle={responseData.fruitCount}
+                icon={<BarChartIcon  fontSize="large" />}
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>            
+              <PageHeader
+                title="Vegitable Gig Count "
+                subTitle={responseData.vegetableCount}
+                icon={<BarChartIcon  fontSize="large" />}
+              />
+            </Grid>            
+          </Grid>
           {/* Most Selling Category chart */}
           <Grid container className={classes.container}>
             <Grid itemxs={12} md={6} >              
               <Paper className={fixedHeightPaper}>
                 <h2>Most Selling Category</h2>
-                <MostSellChart/>
+                <MostSellChart
+                fruit = {responseData.fruitCount}
+                vegi = {responseData.vegetableCount}
+                />
               </Paper>        
             </Grid>
             <Grid itemxs={12} md={6} >              

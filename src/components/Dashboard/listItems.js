@@ -27,7 +27,7 @@ export const mainListItems = (
       <ListItemIcon>
         <ShoppingCartIcon style={{fill:'#E8E8E8'}} />
       </ListItemIcon>
-      <ListItemText primary="View Orders" />
+      <ListItemText primary="View Gigs" />
     </ListItem>
     </Link>
 
@@ -54,7 +54,7 @@ export const mainListItems = (
       <ListItemIcon>
         <WarningIcon style={{fill:'#E8E8E8'}}/>
       </ListItemIcon>
-      <ListItemText primary="Complains" />
+      <ListItemText primary="Reviews" />
     </ListItem>
     </Link>
 

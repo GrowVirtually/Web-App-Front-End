@@ -152,3 +152,26 @@ export default function Dashboard() {
     </div>
   );
 }
+
+
+// export default function OrderTable() {
+
+//   useEffect(() => {
+//    orderData();
+//   }, []);
+
+//   let [responseData, setResponseData] = React.useState([])
+  
+//   const orderData = async () => {
+//   try {
+//     const response = await axios.get(`https://grovi-backend.herokuapp.com/api/v1/gigs/all/5.977553814423967,80.34890374890934?distance=60000&searchTag=rro`, {
+//       headers: {
+//         Authorization: `Bearer ${localStorage.getItem('token')}`,
+//       },
+//     })
+//     console.log(response.data.data.gigs);
+//     setResponseData(response.data.data.gigs);
+//   } catch (error) {
+//     console.error(error);
+//   }
+// }; 

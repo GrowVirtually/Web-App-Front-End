@@ -14,7 +14,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { CallToActionSharp } from '@material-ui/icons';
 import axios from 'axios';
-
+import '../../App.css';
 
 function Copyright() {
   return (
@@ -28,7 +28,6 @@ function Copyright() {
     </Typography>
   );
 }
-
 const useStyles = makeStyles((theme) => ({
   root: {
     height: '100vh',
@@ -65,7 +64,27 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
 export default function Login() {
+
+  const [isValid, setIsValid] = useState(false);
+  const [message, setMessage] = useState('');
+
+  // The regular exprssion to validate the email pattern
+  // It may not be 100% perfect but can catch most email pattern errors and assures that the form is mostly right
+  const emailRegex = /\S+@\S+\.\S+/;
+
+  const validateEmail = (event) => {
+    const email = event.target.value;
+    if (emailRegex.test(email)) {
+      setIsValid(true);
+      setMessage('Your email looks good!');
+    } else {
+      setIsValid(false);
+      setMessage('Please enter a valid email!');
+    }
+  };
+  
   const classes = useStyles();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -121,16 +140,20 @@ export default function Login() {
   }
 
   return (
-    <Grid container component="main" className={classes.root} id="loginto">
+    <Grid container component="main" className={classes.root}>
       <CssBaseline />
       <Grid item xs={false} sm={4} md={7} className={classes.image} />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         <div className={classes.paper}>
+        <div className={`message ${isValid ? 'success' : 'error'}`}>
+        {message}
+      </div>
           <Avatar className={classes.avatar}>
             <LockOutlinedIcon />
           </Avatar>
           <h3>Admin Login</h3>
           <form className={classes.form} noValidate>
+          
             <TextField              
               variant="outlined"
               margin="normal"
@@ -141,10 +164,12 @@ export default function Login() {
               name="email"
               autoComplete="email"
               autoFocus
+              onChange={validateEmail}
               onChange={(e)=>{
                 setEmail(e.target.value)
               }}              
             />
+            
             <TextField
               color="#009900"
               variant="outlined"

@@ -9,14 +9,13 @@ function createData(time, amount) {
 }
 
 const data = [
-  createData('00:00', 0),
-  createData('Sunday', 300),
-  createData('Monday', 600),
-  createData('Tuesday', 800),
-  createData('Wednesday', 100),
-  createData('Thursday', 20),
-  createData('Friday', 100),
-  createData('Satuerday', 200),
+  createData('Sunday', 3),
+  createData('Monday', 5),
+  createData('Tuesday', 4),
+  createData('Wednesday', 1),
+  createData('Thursday', 0),
+  createData('Friday', 0),
+  createData('Satuerday', 0),
   createData('', undefined),
 ];
 

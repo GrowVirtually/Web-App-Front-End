@@ -36,3 +36,37 @@
     transform: rotate(360deg);
   }
 }
+
+.container {
+  padding: 100px;
+}
+
+.email-input {
+  width: 300px;
+  padding: 5px 10px;
+}
+
+.message {
+  margin-top: 20px;
+  font-size: 17px; 
+}
+
+.success {
+  color: blue;
+}
+
+.error {
+  color: red;
+}
+
+.app {
+  margin: 2rem auto;
+  width: 90vw;
+}
+
+.app > h1 {
+  text-align: center;
+  color: white;
+  font-weight: bolder;
+  border-bottom: yellow 0.5px dashed;
+}

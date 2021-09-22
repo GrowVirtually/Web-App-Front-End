@@ -49,7 +49,7 @@ export default function Orders() {
           <Grid container spacing={3}>
             <Grid item xs={12} sm={12}>            
               <PageHeader
-                title="Check Recent Orders And Order Summery"
+                title="Check Available Gigs Details"
                 subTitle="Grovi Official"
                 icon={<ShoppingCartIcon fontSize="large" />}
               />

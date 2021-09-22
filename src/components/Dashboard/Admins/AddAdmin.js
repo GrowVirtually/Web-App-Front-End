@@ -50,7 +50,7 @@ export default function AddAdmin() {
             </Grid>
             <Grid item xs={12} sm={12}>            
               <PageHeader
-                title="Current Registered Admins"
+                title="Remove Current Registered Admins"
                 subTitle="Grovi Official"
                 icon={<PersonAddRoundedIcon  fontSize="large" />}
               />

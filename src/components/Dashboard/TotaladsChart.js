@@ -10,32 +10,32 @@ const data = [
   },
   {
     name: 'Monday',
-    Ads: 30,   
+    Ads: 10,   
     
   },
   {
     name: 'Tuesday',
-    Ads: 20,    
+    Ads: 25,    
     
   },
   {
     name: 'Wednesday',
-    Ads: 27,    
+    Ads: 1,    
    
   },
   {
     name: 'Thursday',
-    Ads: 18,    
+    Ads: 0,    
     
   },
   {
     name: 'Friday',
-    Ads: 23,    
+    Ads: 0,    
     
   },
   {
     name: 'Satureday',
-    Ads: 3,
+    Ads: 0,
     
   },
 ];
